@@ -3,6 +3,6 @@ package ForoHub.Blog.Domain.Models;
 import lombok.Getter;
 
 @Getter
-public class Topic {
+public class Course {
     
 }

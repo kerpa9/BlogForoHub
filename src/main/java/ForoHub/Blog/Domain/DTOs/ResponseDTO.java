@@ -1,3 +1,5 @@
-public class ResponseDTO {
+package ForoHub.Blog.Domain.DTOs;
+
+public record ResponseDTO () {
     
 }

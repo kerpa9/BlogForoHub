@@ -1,4 +1,5 @@
 package ForoHub.Blog.Domain.DTOs;
 
-public record RegisterUsersDTO() {
+public record ProfileDTO (){
+    
 }
