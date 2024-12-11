@@ -1,5 +1,5 @@
 package ForoHub.Blog.Repository;
 
-public class ProfileRespository {
+public class ProfileRepository {
     
 }

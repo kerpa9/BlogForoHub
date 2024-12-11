@@ -1,6 +1,6 @@
 package ForoHub.Blog.Domain.Models.users;
 
-public enum Role {
+public enum RoleUser {
     ADMIN,
     USER
 }

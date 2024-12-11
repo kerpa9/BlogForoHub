@@ -1,10 +1,11 @@
-
 create table users(
         id bigint not null auto_increment,
-        name varchar(100) not null,
+        firstName varchar(100) not null,
+        lastName varchar(100) not null,
+        phone varchar(100) not null,
         email varchar(100) not null unique,
         document varchar(100) not null unique,
-        role varchar(100) not null,
+        roleUser varchar(100) not null,
    
         primary key(id)
 

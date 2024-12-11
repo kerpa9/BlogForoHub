@@ -1,5 +1,5 @@
 package ForoHub.Blog.Repository;
 
-public class RegisterRegister {
+public class RegisterRepository {
     
 }
