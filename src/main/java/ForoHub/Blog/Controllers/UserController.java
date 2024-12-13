@@ -2,7 +2,6 @@ package ForoHub.Blog.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,10 +21,7 @@ public class UserController {
     UsersService usersService;
 
     @PostMapping
-    public ResponseEntity<Users> createUser(@Valid UsersDTO usersDTO) {
-        System.out.println("+++++++++++++++++++++++++++++++++");
-        System.out.println(usersDTO);
-        System.out.println("+++++++++++++++++++++++++++++++++");
+    public ResponseEntity<Users> createUser(@RequestBody @Valid  UsersDTO usersDTO) {
         Users creatUsers = usersService.createInsertUser(usersDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
 
