@@ -7,6 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import ForoHub.Blog.Repository.RegisterRepository;
 import ForoHub.Blog.Repository.UsersRepository;
 import ForoHub.Blog.Services.TokenService;
 import jakarta.servlet.FilterChain;
@@ -21,7 +23,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Autowired
-    private UsersRepository registerRepository;
+    private RegisterRepository registerRepository;
 
     @Override
     protected void doFilterInternal(@SuppressWarnings("null") HttpServletRequest request, @SuppressWarnings("null") HttpServletResponse response, @SuppressWarnings("null") FilterChain filterChain)

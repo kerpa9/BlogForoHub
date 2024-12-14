@@ -1,4 +1,9 @@
 package ForoHub.Blog.Domain.DTOs;
 
-public record RegisterUsersDTO() {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+
+public record RegisterUsersDTO(
+        @Email @NotNull String email,
+        @NotNull String password) {
 }
