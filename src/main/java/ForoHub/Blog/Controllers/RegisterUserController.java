@@ -27,6 +27,7 @@ public class RegisterUserController {
     @Autowired
     private TokenService tokenService;
 
+    @SuppressWarnings("rawtypes")
     @PostMapping
     public ResponseEntity registerUsers(@RequestBody @Valid RegisterUsersDTO registerUsersDTO) {
 
