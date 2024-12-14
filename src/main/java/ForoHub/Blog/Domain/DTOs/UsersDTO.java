@@ -1,5 +1,6 @@
 package ForoHub.Blog.Domain.DTOs;
 
+import ForoHub.Blog.Config.Security.HashPassword;
 import ForoHub.Blog.Domain.Models.users.RoleUser;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -15,9 +16,12 @@ public record UsersDTO(
                 @NotBlank @Pattern(regexp = "\\d{4,6}") String document,
                 @NotNull RoleUser role_user,
                 Boolean active) {
-                        
+
         public UsersDTO {
+                HashPassword hash = new HashPassword();
                 active = active == null ? true : active;
+                password = hash.hashingPass(password);
+
         }
 
 }
