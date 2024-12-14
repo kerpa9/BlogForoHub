@@ -21,7 +21,7 @@ public record UsersDTO(
                 HashPassword hash = new HashPassword();
                 active = active == null ? true : active;
                 password = hash.hashingPass(password);
-
+                role_user = RoleUser.USER;
         }
 
 }
