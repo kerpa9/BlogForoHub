@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import ForoHub.Blog.Repository.RegisterRepository;
-import ForoHub.Blog.Repository.UsersRepository;
 import ForoHub.Blog.Services.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
