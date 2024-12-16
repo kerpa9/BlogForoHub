@@ -8,8 +8,8 @@ public record RegisterUsersDTO(
         @Email @NotNull String email,
         @NotNull String password) {
 
-                    public RegisterUsersDTO {
-                HashPassword hash = new HashPassword();
-                password = hash.hashingPass(password);
-        }
+        //             public RegisterUsersDTO {
+        //         HashPassword hash = new HashPassword();
+        //         password = hash.hashingPass(password);
+        // }
 }

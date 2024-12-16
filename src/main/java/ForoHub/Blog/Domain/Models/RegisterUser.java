@@ -26,6 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class RegisterUser implements UserDetails {
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

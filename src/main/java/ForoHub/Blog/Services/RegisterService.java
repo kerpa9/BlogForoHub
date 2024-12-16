@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import ForoHub.Blog.Domain.DTOs.RegisterUsersDTO;
 import ForoHub.Blog.Domain.Models.RegisterUser;
-import ForoHub.Blog.Domain.Models.users.Users;
 import ForoHub.Blog.Repository.RegisterRepository;
 import ForoHub.Blog.Repository.UsersRepository;
 import jakarta.validation.Valid;
@@ -22,35 +21,34 @@ public class RegisterService implements UserDetailsService {
     @Autowired
     private RegisterRepository registerRepository;
 
+    // public RegisterUser inserDatabase(@Valid RegisterUsersDTO register) {
+    // RegisterUser registerUser = new RegisterUser();
+    // registerUser.setEmail(register.email());
+    // registerUser.setPassword(register.password());
 
-    public RegisterUser inserDatabase(@Valid RegisterUsersDTO register) {
-        RegisterUser registerUser = new RegisterUser();
-        registerUser.setEmail(register.email());
-        registerUser.setPassword(register.password());
+    // RegisterUser savedRegisterUser = registerRepository.save(registerUser);
 
-        RegisterUser savedRegisterUser = registerRepository.save(registerUser);
-
-        return savedRegisterUser;
-    }
+    // return savedRegisterUser;
+    // }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        RegisterUser register = registerRepository.findByEmail(email);
-        Users user = usersRepository.findByEmail(email);
+        // UserDetails register = registerRepository.findByEmail(email);
+        // UserDetails user = usersRepository.findByEmail(email);
 
-        if (register == null) {
-            throw new UsernameNotFoundException("User not found in RegisterRepository");
-        }
+        // if (register == null) {
+        //     throw new UsernameNotFoundException("User not found in RegisterRepository");
+        // }
 
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found in UsersRepository");
-        }
+        // if (user == null) {
+        //     throw new UsernameNotFoundException("User not found in UsersRepository");
+        // }
 
-        if (!register.getEmail().equals(user.getEmail())) {
-            throw new UsernameNotFoundException("Emails do not match");
-        }
+        // if (!register.getUsername().equals(user.getUsername())) {
+        //     throw new UsernameNotFoundException("Emails do not match");
 
+        // }
 
         return registerRepository.findByEmail(email);
     }

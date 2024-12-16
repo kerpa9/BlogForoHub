@@ -35,7 +35,7 @@ public class RegisterUserController {
     @SuppressWarnings("rawtypes")
     @PostMapping
     public ResponseEntity registerUsers(@RequestBody @Valid RegisterUsersDTO registerUsersDTO) {
-        RegisterUser creatUsers = registerService.inserDatabase(registerUsersDTO);
+        // RegisterUser creatUsers = registerService.inserDatabase(registerUsersDTO);
         // return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
 
 
@@ -51,8 +51,8 @@ public class RegisterUserController {
 
         var jwtToken = tokenService.generatedToken((RegisterUser) userAuth.getPrincipal());
 
-        ResponseEntity.ok(new DatosJWTTokenDTO(jwtToken));
-        return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
+        return ResponseEntity.ok(new DatosJWTTokenDTO(jwtToken));
+        // return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
 
     }
 
