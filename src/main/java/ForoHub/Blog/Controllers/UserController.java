@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ForoHub.Blog.Domain.DTOs.UsersDTO;
+import ForoHub.Blog.Domain.Models.RegisterUser;
 import ForoHub.Blog.Domain.Models.users.Users;
+import ForoHub.Blog.Services.RegisterService;
 import ForoHub.Blog.Services.UsersService;
 import jakarta.validation.Valid;
 
@@ -18,11 +20,19 @@ import jakarta.validation.Valid;
 
 public class UserController {
     @Autowired
-    UsersService usersService;
+    private UsersService usersService;
+
 
     @PostMapping
-    public ResponseEntity<Users> createUser(@RequestBody @Valid  UsersDTO usersDTO) {
+    public ResponseEntity<Users> createUser(@RequestBody @Valid UsersDTO usersDTO) {
         Users creatUsers = usersService.createInsertUser(usersDTO);
+        registerUser(usersDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
+
+    }
+
+    public ResponseEntity<RegisterUser> registerUser(@RequestBody @Valid UsersDTO usersDTO) {
+        RegisterUser creatUsers = usersService.registerUser(usersDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
 
     }
