@@ -33,7 +33,7 @@ public class Response {
     private String topic;
     private LocalDateTime create_date;
     @Transient
-    private List<Users> autor;
+    private List<Users> author;
     private String solution;
 
 

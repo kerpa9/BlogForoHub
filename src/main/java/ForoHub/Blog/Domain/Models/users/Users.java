@@ -29,9 +29,6 @@ public class Users {
     private Long id;
 
     private String name_profile;
-
- 
-
     private String phone;
 
     @NotBlank

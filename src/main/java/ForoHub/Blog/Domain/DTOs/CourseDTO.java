@@ -1,5 +1,12 @@
 package ForoHub.Blog.Domain.DTOs;
 
-public record CourseDTO() {
+import jakarta.validation.constraints.NotBlank;
+
+public record CourseDTO(
+
+        @NotBlank String name,
+        @NotBlank String category
+
+) {
 
 }
