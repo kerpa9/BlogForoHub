@@ -1,18 +1,15 @@
 package ForoHub.Blog.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.Authentication;
-
 import ForoHub.Blog.Domain.DTOs.DatosJWTTokenDTO;
 import ForoHub.Blog.Domain.DTOs.RegisterUsersDTO;
 import ForoHub.Blog.Domain.Models.RegisterUser;
-import ForoHub.Blog.Services.RegisterService;
 import ForoHub.Blog.Services.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,8 +26,7 @@ public class RegisterUserController {
     @Autowired
     private TokenService tokenService;
 
-    @Autowired
-    private RegisterService registerService;
+   
 
     @SuppressWarnings("rawtypes")
     @PostMapping

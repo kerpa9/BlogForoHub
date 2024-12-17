@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import ForoHub.Blog.Domain.DTOs.UsersDTO;
 import ForoHub.Blog.Domain.Models.RegisterUser;
 import ForoHub.Blog.Domain.Models.users.Users;
-import ForoHub.Blog.Services.RegisterService;
 import ForoHub.Blog.Services.UsersService;
 import jakarta.validation.Valid;
 

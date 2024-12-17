@@ -3,7 +3,6 @@ package ForoHub.Blog.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ForoHub.Blog.Domain.DTOs.RegisterUsersDTO;
 import ForoHub.Blog.Domain.DTOs.UsersDTO;
 import ForoHub.Blog.Domain.Models.RegisterUser;
 import ForoHub.Blog.Domain.Models.users.Users;
