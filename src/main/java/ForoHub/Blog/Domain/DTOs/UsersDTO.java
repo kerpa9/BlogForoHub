@@ -8,8 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public record UsersDTO(
-                @NotBlank String first_name,
-                String last_name,
+                @NotBlank String name_profile,
                 @NotBlank String phone,
                 @Email @NotNull String email,
                 @NotNull String password,

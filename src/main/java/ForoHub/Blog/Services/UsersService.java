@@ -23,8 +23,7 @@ public class UsersService {
     public Users createInsertUser(@Valid UsersDTO usersDTO) {
 
         Users users = new Users();
-        users.setFirst_name(usersDTO.first_name());
-        users.setLast_name(usersDTO.last_name());
+        users.setName_profile(usersDTO.name_profile());
         users.setPhone(usersDTO.phone());
         users.setDocument(usersDTO.document());
         users.setEmail(usersDTO.email());

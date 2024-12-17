@@ -28,9 +28,9 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String first_name;
+    private String name_profile;
 
-    private String last_name;
+ 
 
     private String phone;
 
