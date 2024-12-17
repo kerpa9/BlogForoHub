@@ -1,3 +1,4 @@
+
 create table topic(
         
         id bigint not null auto_increment,
