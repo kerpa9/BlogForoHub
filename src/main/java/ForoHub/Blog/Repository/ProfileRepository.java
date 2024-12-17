@@ -1,5 +1,9 @@
 package ForoHub.Blog.Repository;
 
-public class ProfileRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import ForoHub.Blog.Domain.Models.Profile;
+
+public interface ProfileRepository extends JpaRepository <Profile, Long> {
     
 }
