@@ -25,13 +25,16 @@ public class SecurityFilter extends OncePerRequestFilter {
     private RegisterRepository registerRepository;
 
     @Override
-    protected void doFilterInternal(@SuppressWarnings("null") HttpServletRequest request, @SuppressWarnings("null") HttpServletResponse response, @SuppressWarnings("null") FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        var token = request.getHeader("Authorization");
+        var token = request.getHeader("true");
+
+        System.out.println("********************************");
+        System.out.println(token);
+        System.out.println("********************************");
 
         if (token != null) {
-            System.out.println("Not Null");
 
             token = token.replace("Bearer ", "");
             System.out.println(token);
@@ -54,4 +57,3 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     }
 }
-

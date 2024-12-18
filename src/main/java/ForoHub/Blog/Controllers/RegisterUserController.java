@@ -4,16 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.security.core.Authentication;
+
 import ForoHub.Blog.Domain.DTOs.DatosJWTTokenDTO;
 import ForoHub.Blog.Domain.DTOs.RegisterUsersDTO;
 import ForoHub.Blog.Domain.Models.RegisterUser;
 import ForoHub.Blog.Services.TokenService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/v1/login")
@@ -40,12 +41,15 @@ public class RegisterUserController {
                 registerUsersDTO.password());
 
         System.out.println("************************");
-        System.out.println(registerUsersDTO);
+        System.out.println(token);
         System.out.println("************************");
-
+        
         var userAuth = authenticationManager.authenticate(token);
-
+        
         var jwtToken = tokenService.generatedToken((RegisterUser) userAuth.getPrincipal());
+        System.out.println("************************");
+        System.out.println(jwtToken);
+        System.out.println("************************");
 
         return ResponseEntity.ok(new DatosJWTTokenDTO(jwtToken));
         // return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);

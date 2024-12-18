@@ -8,15 +8,18 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record TopicDTO (
+public record TopicDTO(
 
-                @NotBlank String title,
-                @NotBlank String message,
-                @Email @NotNull LocalDateTime create_date,
-                @NotNull  Boolean status,
-                @NotNull List<Course> course,
-                @NotBlank String response
+        @NotBlank String title,
+        @NotBlank String message,
+        @Email @NotNull LocalDateTime create_date,
+        @NotNull Boolean status,
+        List<Course> course,
+        @NotBlank String response
 
-){
-    
+) {
+    public TopicDTO {
+        status = status == null ? true : status;
+    }
+
 }
