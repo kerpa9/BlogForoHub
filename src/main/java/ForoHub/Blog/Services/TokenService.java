@@ -38,7 +38,6 @@ public class TokenService {
 
         }
     }
-        @SuppressWarnings("null")
         public String getSubject(String token) {
         if (token == null) {
             throw new RuntimeException("Token is null");
