@@ -7,14 +7,20 @@ import jakarta.validation.constraints.NotNull;
 
 public record TopicDTO(
 
-        @NotBlank String title, @NotBlank String message, @NotNull LocalDateTime create_date,
-        @NotNull Boolean status,
-        // List<Course> course,
-        @NotBlank String response
+        @NotBlank String title,
+        @NotBlank String message,
+        @NotNull LocalDateTime create_date,
+        @NotNull Boolean active 
+// @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
+// FetchType.EAGER)
+// List<Course> course
+// @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
+// FetchType.EAGER)
+// List<Response> response
 
 ) {
     public TopicDTO {
-        status = status == null ? true : status;
+        active = active == null ? true : active;
     }
 
 }

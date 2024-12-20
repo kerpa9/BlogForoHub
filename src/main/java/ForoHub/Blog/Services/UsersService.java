@@ -18,7 +18,7 @@ public class UsersService {
 
     @Autowired
     private RegisterRepository registerRepository;
-
+    
     @Transactional
     public Users createInsertUser(@Valid UsersDTO usersDTO) {
 
@@ -34,7 +34,7 @@ public class UsersService {
 
     }
 
-    public RegisterUser registerUser(@Valid UsersDTO registerUser){
+    public RegisterUser registerUser(@Valid UsersDTO registerUser) {
         RegisterUser register = new RegisterUser();
         register.setEmail(registerUser.email());
         register.setPassword(registerUser.password());
@@ -42,4 +42,5 @@ public class UsersService {
 
     }
 
+   
 }

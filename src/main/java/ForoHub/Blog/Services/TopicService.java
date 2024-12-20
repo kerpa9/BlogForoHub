@@ -21,6 +21,7 @@ public class TopicService {
         topic.setTitle(topicDTO.title());
         topic.setMessage(topicDTO.message());
         topic.setCreate_date(topicDTO.create_date());
+        topic.setActive(topicDTO.active());
         return topicRepository.save(topic);
     }
 

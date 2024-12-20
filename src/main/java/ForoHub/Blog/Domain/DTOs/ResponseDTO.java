@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record ResponseDTO (
                 @NotBlank String message,
-                @NotBlank String topic,
+                // @NotBlank String topic,
                 @NotNull LocalDateTime create_date,
                 // @NotNull List<Users> author,
                 @NotBlank String solution

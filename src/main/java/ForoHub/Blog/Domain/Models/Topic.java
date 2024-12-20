@@ -29,15 +29,15 @@ public class Topic {
     private String title;
     private String message;
     private LocalDateTime create_date;
-    private Boolean status;
+    private Boolean active;
 
     // @Transient
     // private List<Course> course;
-    private String response;
+    // private String response;
 
     
-    public void setStausInactiveUser() {
-        this.status = true;
+    public void setStausInactiveTopic() {
+        this.active = false;
     }
 
 
