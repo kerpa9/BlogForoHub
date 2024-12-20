@@ -10,7 +10,8 @@ public record TopicDTO(
         @NotBlank String title,
         @NotBlank String message,
         @NotNull LocalDateTime create_date,
-        @NotNull Boolean active 
+        @NotNull Boolean active,
+        Long idCourse
 // @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
 // FetchType.EAGER)
 // List<Course> course
