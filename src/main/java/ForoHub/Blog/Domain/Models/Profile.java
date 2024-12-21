@@ -29,6 +29,7 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name_profile;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Users users;

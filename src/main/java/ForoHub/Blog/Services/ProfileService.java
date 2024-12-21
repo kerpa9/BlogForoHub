@@ -23,9 +23,9 @@ public class ProfileService {
     public Profile createProfile(@Valid ProfileDTO profileDTO) {
 
         Profile profile = new Profile();
-        profile.setName_profile(profileDTO.name_profile());
 
         var user = usersRepository.findById(profileDTO.idUser()).get();
+        profile.setName_profile(profileDTO.name_profile());
         profile.setUsers(user);
 
         return profileRepository.save(profile);

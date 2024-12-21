@@ -23,8 +23,8 @@ public class TopicService {
     public Topic createTopic(@Valid TopicDTO topicDTO) {
         Topic topic = new Topic();
 
-        var course = courseRepository.findById(topicDTO.idCourse()).get();
-        topic.setCourse(course);
+        // var course = courseRepository.findById(topicDTO.idCourse()).get();
+        // topic.setCourse(course);
         topic.setTitle(topicDTO.title());
         topic.setMessage(topicDTO.message());
         topic.setCreate_date(topicDTO.create_date());
