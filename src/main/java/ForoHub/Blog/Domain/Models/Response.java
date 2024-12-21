@@ -2,6 +2,8 @@ package ForoHub.Blog.Domain.Models;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -32,10 +34,10 @@ public class Response {
     private String message;
     private LocalDateTime create_date;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id")
     private Topic topic;
-
 
     // @Transient
     // private List<Users> author;
