@@ -13,13 +13,13 @@ public record TopicDTO(
         @NotNull LocalDateTime create_date,
         @NotNull Boolean active,
         List<ResponseDTO> response
-        // Long idCourse
-// @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
-// FetchType.EAGER)
-// List<Course> course
-// @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
-// FetchType.EAGER)
-// List<Response> response
+    // Long idCourse
+    // @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
+    // FetchType.EAGER)
+    // List<Course> course
+    // @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
+    // FetchType.EAGER)
+    // List<Response> response
 
 ) {
     public TopicDTO {
