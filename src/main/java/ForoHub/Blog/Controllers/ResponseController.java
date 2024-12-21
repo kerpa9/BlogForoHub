@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ForoHub.Blog.Domain.DTOs.PageableDTO;
 import ForoHub.Blog.Domain.DTOs.ResponseDTO;
 import ForoHub.Blog.Domain.Models.Response;
 import ForoHub.Blog.Services.ResponseService;
@@ -35,7 +36,7 @@ public class ResponseController {
     }
 
     @GetMapping
-    private ResponseEntity<Page<ResponseDTO>> listResponse(@PageableDefault(size = 5) Pageable pageable) {
+    private ResponseEntity<PageableDTO> listResponse(@PageableDefault(size = 5) Pageable pageable) {
         Page<Response> responses = responseService.getAllResponse(pageable);
         Page<ResponseDTO> responseDTOs = responses.map(response -> new ResponseDTO(
 
@@ -43,9 +44,7 @@ public class ResponseController {
                 response.getMessage(),
                 response.getCreate_date(),
                 response.getSolution()));
-                
-        return ResponseEntity.ok(responseDTOs);
 
+        return ResponseEntity.ok(PageableDTO.fromPage(responseDTOs));
     }
-
 }
