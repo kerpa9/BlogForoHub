@@ -43,7 +43,8 @@ public class ResponseController {
                 response.getTopic().getId(),
                 response.getMessage(),
                 response.getCreate_date(),
-                response.getSolution()));
+                response.getSolution(),
+                response.getActive()));
 
         return ResponseEntity.ok(PageableDTO.fromPage(responseDTOs));
     }

@@ -6,6 +6,7 @@ create table response(
         topic_id bigint not null,
         create_date DATETIME DEFAULT CURRENT_TIMESTAMP,
         -- autor varchar(100) not null,
+        active boolean default true,
         solution varchar(100) not null,
         primary key(id),
 

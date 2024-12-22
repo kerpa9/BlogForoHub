@@ -15,33 +15,29 @@ import jakarta.validation.Valid;
 @Service
 public class TopicService {
 
-    @Autowired
-    private TopicRepository topicRepository;
+        @Autowired
+        private TopicRepository topicRepository;
 
+        @Transactional
+        public Topic createTopic(@Valid TopicDTO topicDTO) {
+                Topic topic = new Topic(
+                                null, topicDTO.title(),
+                                topicDTO.message(),
+                                topicDTO.create_date(),
+                                topicDTO.active(), null);
 
-    @Transactional
-    public Topic createTopic(@Valid TopicDTO topicDTO) {
-        Topic topic = new Topic(
-            null, topicDTO.title(),
-                        topicDTO.message(),
-                        topicDTO.create_date(),
-                        topicDTO.active(), null
-        );
+                if (topicDTO.response() != null) {
+                        topic.setResponses(
+                                        topicDTO.response().stream()
+                                                        .map(r -> new Response(
+                                                                        null, r.message(),
+                                                                        r.create_date(),
+                                                                        topic, r.active(), r.solution()))
+                                                        .peek(r -> r.setTopic(topic))
+                                                        .collect(Collectors.toList()));
+                }
 
-        if (topicDTO.response() != null) {
-            topic.setResponses(
-                topicDTO.response().stream()
-                    .map(r -> new Response(
-                        null, r.message(),
-                                                r.create_date(),
-                                                topic, r.solution()
-                    ))
-                    .peek(r -> r.setTopic(topic))
-                    .collect(Collectors.toList())
-            );
+                return topicRepository.save(topic);
         }
-
-        return topicRepository.save(topic);
-    }
 
 }

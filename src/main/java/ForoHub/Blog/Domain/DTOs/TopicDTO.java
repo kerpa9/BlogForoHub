@@ -11,7 +11,7 @@ public record TopicDTO(
         @NotBlank String title,
         @NotBlank String message,
         @NotNull LocalDateTime create_date,
-        @NotNull Boolean active,
+         Boolean active,
         List<ResponseDTO> response
     // Long idCourse
     // @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =

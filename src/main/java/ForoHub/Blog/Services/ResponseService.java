@@ -32,6 +32,7 @@ public class ResponseService {
         responseData.setMessage(responseDTO.message());
         responseData.setCreate_date(responseDTO.create_date());
         responseData.setSolution(responseDTO.solution());
+        responseData.setActive(true);
 
         return response.save(responseData);
 
@@ -39,7 +40,8 @@ public class ResponseService {
 
     @Transactional
     public Page<Response> getAllResponse(Pageable pageable) {
-        return response.findAll(pageable);
+
+        return response.findAllActive(pageable);
     }
 
 }

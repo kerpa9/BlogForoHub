@@ -38,9 +38,13 @@ public class Response {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id")
     private Topic topic;
-
+    private Boolean active = true;
     // @Transient
     // private List<Users> author;
     private String solution;
+
+    public void setStausInactiveResponse() {
+        this.active = false;
+    }
 
 }
