@@ -6,8 +6,8 @@ create table topic(
         message text,
         create_date datetime default current_timestamp,
         active boolean default true,
-        -- course_id bigint not null,
-        primary key (id)
-        -- constraint fk_topic_course_id foreign key (course_id) references course(id)
+        course_id bigint not null,
+        primary key (id),
 
+        constraint fk_topic_course_id foreign key (course_id) references course(id)
 );
