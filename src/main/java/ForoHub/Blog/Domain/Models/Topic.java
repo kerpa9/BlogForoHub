@@ -45,27 +45,16 @@ public class Topic {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
-    
+
+    private String nameCourse;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Response> responses = new ArrayList<>();
-
-    // @Transient
-    // private List<Course> course;
-    // private String response;
-
-    // public void addResponse(Response response) {
-    // responses.add(response);
-    // response.setTopic(this);
-    // }
-
-    // public void removeResponse(Response response) {
-    // responses.remove(response);
-    // response.setTopic(null);
-    // }
 
     public void setStausInactiveTopic() {
         this.active = false;
     }
 
+   
 }

@@ -11,13 +11,8 @@ public record TopicDTO(
         @NotBlank String title, @NotBlank String message, @NotNull LocalDateTime create_date,
         Boolean active,
         List<ResponseDTO> response,
+        String nameCourse,
         Long idCourse
-// @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
-// FetchType.EAGER)
-// List<Course> course
-// @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, fetch =
-// FetchType.EAGER)
-// List<Response> response
 
 ) {
     public TopicDTO {

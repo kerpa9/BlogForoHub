@@ -6,6 +6,7 @@ create table topic(
         message text,
         create_date datetime default current_timestamp,
         active boolean default true,
+        nameCourse varchar(100),
         course_id bigint not null,
         primary key (id),
 

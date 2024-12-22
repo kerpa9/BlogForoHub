@@ -25,6 +25,7 @@ public class TopicService {
         @Transactional
         public Topic createTopic(@Valid TopicDTO topicDTO) {
                 var course = courseRepository.findById(topicDTO.idCourse()).get();
+                String nameCourse = courseRepository.findNameCourse(topicDTO.idCourse());
                 Topic topic = new Topic();
 
                 topic.setMessage(topicDTO.message());
@@ -32,7 +33,8 @@ public class TopicService {
                 topic.setCreate_date(topicDTO.create_date());
                 topic.setActive(true);
                 topic.setCourse(course);
-                //Set Response 
+                topic.setNameCourse(nameCourse);
+                // Set Response
                 if (topicDTO.response() != null) {
                         topic.setResponses(
                                         topicDTO.response().stream()
