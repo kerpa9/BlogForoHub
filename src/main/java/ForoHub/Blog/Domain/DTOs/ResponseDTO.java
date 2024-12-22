@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 public record ResponseDTO(
 
                 Long idTopic,
+                Long idUsers,
                 @NotBlank String message,
                 @NotNull LocalDateTime create_date,
                 // @NotNull List<Users> author,
@@ -18,6 +19,6 @@ public record ResponseDTO(
 
         public ResponseDTO {
                 active = (active == null) ? true : active;
-            }
+        }
 
 }

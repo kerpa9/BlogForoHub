@@ -32,7 +32,7 @@ public class TopicService {
                                                         .map(r -> new Response(
                                                                         null, r.message(),
                                                                         r.create_date(),
-                                                                        topic, r.active(), r.solution()))
+                                                                        topic, null, r.active(), r.solution()))
                                                         .peek(r -> r.setTopic(topic))
                                                         .collect(Collectors.toList()));
                 }

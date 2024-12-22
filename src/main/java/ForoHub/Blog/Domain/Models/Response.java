@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import ForoHub.Blog.Domain.Models.users.Users;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +39,12 @@ public class Response {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id")
     private Topic topic;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "users_id")
+    private Users users;
+
     private Boolean active = true;
     // @Transient
     // private List<Users> author;
@@ -46,5 +53,9 @@ public class Response {
     public void setStausInactiveResponse() {
         this.active = false;
     }
+
+ 
+
+    
 
 }

@@ -9,6 +9,7 @@ import ForoHub.Blog.Domain.DTOs.ResponseDTO;
 import ForoHub.Blog.Domain.Models.Response;
 import ForoHub.Blog.Repository.ResponseRepository;
 import ForoHub.Blog.Repository.TopicRepository;
+import ForoHub.Blog.Repository.UsersRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -21,14 +22,19 @@ public class ResponseService {
     @Autowired
     private TopicRepository topicRepository;
 
+    @Autowired
+    private UsersRepository usersRepository;
+
     @Transactional
     public Response createResponse(@Valid ResponseDTO responseDTO) {
 
         Response responseData = new Response();
 
         var topic = topicRepository.findById(responseDTO.idTopic()).get();
+        var users = usersRepository.findById(responseDTO.idUsers()).get();
 
         responseData.setTopic(topic);
+        responseData.setUsers(users);
         responseData.setMessage(responseDTO.message());
         responseData.setCreate_date(responseDTO.create_date());
         responseData.setSolution(responseDTO.solution());

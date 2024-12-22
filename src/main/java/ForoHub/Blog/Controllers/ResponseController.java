@@ -41,6 +41,7 @@ public class ResponseController {
         Page<ResponseDTO> responseDTOs = responses.map(response -> new ResponseDTO(
 
                 response.getTopic().getId(),
+                response.getUsers().getId(),
                 response.getMessage(),
                 response.getCreate_date(),
                 response.getSolution(),
