@@ -50,4 +50,9 @@ public class ResponseService {
         return response.findAllActive(pageable);
     }
 
+    @Transactional
+    public Response getOneByID(Long id) {
+        return response.findByIdActive(id);
+    }
+
 }
