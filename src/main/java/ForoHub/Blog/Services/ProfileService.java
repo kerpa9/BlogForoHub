@@ -27,6 +27,8 @@ public class ProfileService {
         var user = usersRepository.findById(profileDTO.idUser()).get();
         profile.setName_profile(profileDTO.name_profile());
         profile.setUsers(user);
+        profile.setActive(profileDTO.active());
+
 
         return profileRepository.save(profile);
 

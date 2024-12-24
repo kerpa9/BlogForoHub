@@ -46,7 +46,7 @@ public class Topic {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    private String nameCourse;
+    private String name_course;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)

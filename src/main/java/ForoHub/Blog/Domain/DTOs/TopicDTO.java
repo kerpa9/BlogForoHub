@@ -11,7 +11,7 @@ public record TopicDTO(
         @NotBlank String title, @NotBlank String message, @NotNull LocalDateTime create_date,
         Boolean active,
         List<ResponseDTO> response,
-        String nameCourse,
+        String name_course,
         Long idCourse
 
 ) {

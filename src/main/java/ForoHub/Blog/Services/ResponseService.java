@@ -38,7 +38,7 @@ public class ResponseService {
         responseData.setMessage(responseDTO.message());
         responseData.setCreate_date(responseDTO.create_date());
         responseData.setSolution(responseDTO.solution());
-        responseData.setActive(true);
+        responseData.setActive(responseDTO.active());
 
         return response.save(responseData);
 

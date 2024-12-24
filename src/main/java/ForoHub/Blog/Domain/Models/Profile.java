@@ -29,9 +29,14 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name_profile;
-    
+    private Boolean active;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Users users;
+
+    public void setStausInactiveProfile() {
+        this.active = false;
+    }
 
 }

@@ -25,6 +25,10 @@ public class Course {
     private Long id;
     private String name;
     private String category;
+    private Boolean active;
 
+    public void setStausInactiveCourse() {
+        this.active = false;
+    }
 
 }

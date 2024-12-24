@@ -20,7 +20,8 @@ public class CourseService {
         Course course = new Course();
         course.setName(courseDTO.name());
         course.setCategory(courseDTO.category());
-        
+        course.setActive(courseDTO.active());
+
         return courseRepository.save(course);
     }
 

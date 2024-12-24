@@ -31,9 +31,9 @@ public class TopicService {
                 topic.setMessage(topicDTO.message());
                 topic.setTitle(topicDTO.title());
                 topic.setCreate_date(topicDTO.create_date());
-                topic.setActive(true);
+                topic.setActive(topicDTO.active());
                 topic.setCourse(course);
-                topic.setNameCourse(nameCourse);
+                topic.setName_course(nameCourse);
                 // Set Response
                 if (topicDTO.response() != null) {
                         topic.setResponses(
