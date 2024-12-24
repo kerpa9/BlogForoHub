@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-public record PageableDTO(List<ResponseDTO> content) {
-    public static PageableDTO fromPage(Page<ResponseDTO> page) {
-        return new PageableDTO(page.getContent());
+public record PageableDTO<T> (List<T> content) {
+    public static <T> PageableDTO<T> fromPage(Page<T> page) {
+        return new PageableDTO<>(page.getContent());
     }
 }

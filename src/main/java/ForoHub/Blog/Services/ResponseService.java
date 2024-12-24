@@ -55,4 +55,10 @@ public class ResponseService {
         return response.findByIdActive(id);
     }
 
+    @Transactional
+    public void deleteResponse(Long id) {
+        Response responseModel = response.findByIdActive(id);
+        responseModel.setStausInactiveResponse();
+    }
+
 }
