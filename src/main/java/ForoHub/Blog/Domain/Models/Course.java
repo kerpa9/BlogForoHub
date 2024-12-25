@@ -23,6 +23,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long id_login;
     private String name;
     private String category;
     private Boolean active;

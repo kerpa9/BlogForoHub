@@ -15,9 +15,16 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private FilterLoginService filter;
+
     @Transactional
     public Course createCourse(@Valid CourseDTO courseDTO) {
+
         Course course = new Course();
+
+
+        course.setId_login(filter.getUserLogin());
         course.setName(courseDTO.name());
         course.setCategory(courseDTO.category());
         course.setActive(courseDTO.active());
