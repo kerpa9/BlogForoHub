@@ -17,4 +17,13 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
         select t from Topic t where t.active = true
     """)
     Page<Topic> findAllActive(Pageable pageable);
+
+        @Query("""
+                select t from Topic t
+                where
+                t.active=TRUE
+                and
+                t.id= :id
+                """)
+    Topic findByIdActive(@Param("id")  Long id);
 }

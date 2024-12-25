@@ -3,6 +3,8 @@ package ForoHub.Blog.Services;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ForoHub.Blog.Domain.DTOs.TopicDTO;
@@ -47,6 +49,26 @@ public class TopicService {
                 }
 
                 return topicRepository.save(topic);
+        }
+
+        @Transactional
+        public Page<Topic> getAllTopics(Pageable pageable) {
+
+                return topicRepository.findAllActive(pageable);
+
+        }
+
+        @Transactional
+        public Topic getOneTopicByID(Long id) {
+
+                return topicRepository.findByIdActive(id);
+
+        }
+
+        @Transactional
+        public void deleteTopic(Long id){
+                Topic topicModel=topicRepository.findByIdActive(id);
+                topicModel.setStausInactiveTopic();
         }
 
 }
