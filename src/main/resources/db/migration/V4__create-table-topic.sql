@@ -2,6 +2,7 @@
 create table topic(
         
         id bigint not null auto_increment,
+        id_login bigint,
         title varchar(100) not null,
         message text,
         create_date datetime default current_timestamp,

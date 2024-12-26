@@ -13,17 +13,17 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
     @Query("SELECT t.title, t.message FROM Topic t WHERE t.id = :id")
     Object[] findTitleAndMessageById(@Param("id") Long id);
 
-        @Query("""
-        select t from Topic t where t.active = true
-    """)
-    Page<Topic> findAllActive(Pageable pageable);
+    @Query("""
+                select t from Topic t where t.active = true and t.id_login=:id
+            """)
+    Page<Topic> findAllActive(Long id, Pageable pageable);
 
-        @Query("""
-                select t from Topic t
-                where
-                t.active=TRUE
-                and
-                t.id= :id
-                """)
-    Topic findByIdActive(@Param("id")  Long id);
+    @Query("""
+            select t from Topic t
+            where
+            t.active=TRUE
+            and
+            t.id= :id
+            """)
+    Topic findByIdActive(@Param("id") Long id);
 }

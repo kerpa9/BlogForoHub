@@ -24,12 +24,17 @@ public class TopicService {
         @Autowired
         private CourseRepository courseRepository;
 
+        @Autowired
+        private FilterLoginService filter;
+
+
         @Transactional
         public Topic createTopic(@Valid TopicDTO topicDTO) {
+                Topic topic = new Topic();
                 var course = courseRepository.findById(topicDTO.idCourse()).get();
                 String nameCourse = courseRepository.findNameCourse(topicDTO.idCourse());
-                Topic topic = new Topic();
 
+                topic.setId_login(filter.getUserLogin());
                 topic.setMessage(topicDTO.message());
                 topic.setTitle(topicDTO.title());
                 topic.setCreate_date(topicDTO.create_date());
@@ -54,7 +59,8 @@ public class TopicService {
         @Transactional
         public Page<Topic> getAllTopics(Pageable pageable) {
 
-                return topicRepository.findAllActive(pageable);
+                Long loggedUserId = filter.getUserLogin();
+                return topicRepository.findAllActive(loggedUserId, pageable);
 
         }
 
@@ -66,8 +72,8 @@ public class TopicService {
         }
 
         @Transactional
-        public void deleteTopic(Long id){
-                Topic topicModel=topicRepository.findByIdActive(id);
+        public void deleteTopic(Long id) {
+                Topic topicModel = topicRepository.findByIdActive(id);
                 topicModel.setStausInactiveTopic();
         }
 

@@ -1,7 +1,5 @@
 package ForoHub.Blog.Domain.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import ForoHub.Blog.Config.RegisterFilterID.IUserOwnedEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,26 +12,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "course")
-@Entity(name = "Course")
+@Table(name = "exist")
+@Entity(name ="Exist")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Course implements IUserOwnedEntity {
+public class ExistingEntity implements IUserOwnedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonIgnore
-    private Long id_login;
-    private String name;
-    private String category;
-    private Boolean active;
 
-    public void setStausInactiveCourse() {
-        this.active = false;
+    private Long id_login;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -45,5 +46,4 @@ public class Course implements IUserOwnedEntity {
     public void setUserId(Long userId) {
         this.id_login = userId;
     }
-
 }
