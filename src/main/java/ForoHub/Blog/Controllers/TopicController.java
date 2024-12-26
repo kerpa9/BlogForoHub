@@ -44,7 +44,7 @@ public class TopicController {
 
         Page<Topic> topics = topicService.getAllTopics(pageable);
 
-        Page<TopicDTO> topicDTO = topics.map(topic -> new TopicDTO(
+        Page<TopicDTO> topicDTO = topics.map((var topic) -> new TopicDTO(
 
                 topic.getId(),
                 topic.getTitle(),
