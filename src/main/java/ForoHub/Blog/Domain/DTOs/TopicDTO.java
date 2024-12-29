@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 public record TopicDTO(
 
         Long id,
+        Long id_topic,
         @NotBlank String title, @NotBlank String message, @NotNull LocalDateTime create_date,
         Boolean active,
         List<ResponseDTO> response,

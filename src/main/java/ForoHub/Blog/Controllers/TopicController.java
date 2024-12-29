@@ -47,6 +47,7 @@ public class TopicController {
         Page<TopicDTO> topicDTO = topics.map((var topic) -> new TopicDTO(
 
                 topic.getId(),
+                topic.getId_topic(),
                 topic.getTitle(),
                 topic.getMessage(),
                 topic.getCreate_date(),

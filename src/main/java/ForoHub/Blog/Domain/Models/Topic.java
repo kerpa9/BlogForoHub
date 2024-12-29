@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import ForoHub.Blog.Config.RegisterFilterID.IUserOwnedEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,13 +32,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Topic {
+public class Topic  implements IUserOwnedEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonIgnore
     private Long id_login;
+    private Long id_topic;
+
     private String title;
     private String message;
     private LocalDateTime create_date;
@@ -56,6 +59,16 @@ public class Topic {
 
     public void setStausInactiveTopic() {
         this.active = false;
+    }
+
+    @Override
+    public Long getUserId() {
+        return id_login;
+    }
+
+    @Override
+    public void setUserId(Long userId) {
+        this.id_login = userId;
     }
 
 }

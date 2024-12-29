@@ -1,7 +1,5 @@
 package ForoHub.Blog.Services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,38 +16,44 @@ import jakarta.validation.Valid;
 public class CourseService extends BaseUserService<Course> {
     @Autowired
     private CourseRepository courseRepository;
-    
+
     @Autowired
     private FilterLoginService filter;
-    
+
     @Transactional
     public Course createCourse(@Valid CourseDTO courseDTO) {
         Course course = new Course();
         Long userId = filter.getUserLogin();
-        
+
         Long nextSequentialId = courseRepository.findMaxSequentialIdForUser(userId) + 1;
-        
+
         course.setId_login(userId);
-        course.setUser_sequential_id(nextSequentialId);
+        course.setId_course(nextSequentialId);
         course.setName(courseDTO.name());
         course.setCategory(courseDTO.category());
         course.setActive(courseDTO.active());
-        
+
         return courseRepository.save(course);
     }
-    
+
     @Transactional
     public Page<Course> getAllCourse(Pageable pageable) {
         Long loggedUserId = filter.getUserLogin();
         return courseRepository.findAllActive(loggedUserId, pageable);
     }
 
- 
     @Transactional
-    public Optional<Course> findBySequentialId(Long sequential_id) {
+    public Course findBySequentialId(Long sequential_id) {
         return courseRepository.findBySequentialIdAndId_login(
-            sequential_id, 
-            filter.getUserLogin()
-        );
+                sequential_id,
+                filter.getUserLogin());
+    }
+
+    @Transactional
+    public void deleteCourse(Long id) {
+        Course course = courseRepository.findBySequentialIdAndId_login(id, filter.getUserLogin());
+
+        course.setStausInactiveCourse();
+
     }
 }

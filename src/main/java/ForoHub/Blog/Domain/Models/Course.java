@@ -25,11 +25,12 @@ public class Course implements IUserOwnedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
     @JsonIgnore
     private Long id_login;
-
-    private Long user_sequential_id;
+    private Long id_course;
+    
     private String name;
     private String category;
     private Boolean active;

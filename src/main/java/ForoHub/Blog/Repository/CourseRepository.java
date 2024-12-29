@@ -22,8 +22,9 @@ public interface CourseRepository extends BaseRepository<Course> {
         @Query("SELECT c.name FROM Course c WHERE c.id = :id")
         String findNameCourse(@Param("id") Long id);
 
-        @Query("SELECT COALESCE(MAX(c.user_sequential_id), 0) FROM Course c WHERE c.id_login = :id_login")
+        @Query("SELECT COALESCE(MAX(c.id_course), 0) FROM Course c WHERE c.id_login = :id_login")
         Long findMaxSequentialIdForUser(@Param("id_login") Long id_login);
+        
 
         @Query("""
                         select c from Course c
@@ -31,7 +32,7 @@ public interface CourseRepository extends BaseRepository<Course> {
                         c.active = TRUE
                         and
                         c.id_login = :id_login
-                        order by c.user_sequential_id
+                        order by c.id_course
                         """)
         Page<Course> findAllActive(@Param("id_login") Long id_login, Pageable pageable);
 
@@ -39,9 +40,9 @@ public interface CourseRepository extends BaseRepository<Course> {
                         select c from Course c
                         where
                         c.id_login = :id_login
-                        and c.user_sequential_id = :user_sequential_id
+                        and c.id_course = :id_course
                         """)
-        Optional<Course> findBySequentialIdAndId_login(
-                        @Param("user_sequential_id") Long user_sequential_id,
+        Course findBySequentialIdAndId_login(
+                        @Param("id_course") Long id_course,
                         @Param("id_login") Long id_login);
 }
