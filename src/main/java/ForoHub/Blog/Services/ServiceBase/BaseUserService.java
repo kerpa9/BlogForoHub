@@ -18,49 +18,49 @@ import ForoHub.Blog.Repository.BaseRepository.BaseRepository;
 
 @Service
 public abstract class BaseUserService<T extends IUserOwnedEntity> {
-    
+
     @Autowired
     protected BaseRepository<T> repository;
-    
+
     protected Long getCurrentUserId() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Users user = (Users) auth.getPrincipal();
         return user.getId();
     }
-    
+
     @Transactional(readOnly = true)
     public List<T> findAll() {
-        return repository.findAllByUserId(getCurrentUserId());
+        return repository.findAllByIdLogin(getCurrentUserId());
     }
-    
+
     @Transactional(readOnly = true)
     public Page<T> findAllPaginated(Pageable pageable) {
-        return repository.findAllByUserIdPaginated(getCurrentUserId(), pageable);
+        return repository.findAllByIdLoginPaginated(getCurrentUserId(), pageable);
     }
-    
+
     @Transactional(readOnly = true)
     public Optional<T> findById(Long id) {
-        return repository.findByIdAndUserId(id, getCurrentUserId());
+        return repository.findByIdAndIdLogin(id, getCurrentUserId());
     }
-    
+
     @Transactional(readOnly = true)
     public T findByIdOrThrow(Long id) {
         return findById(id)
-            .orElseThrow(() -> new HandleException("Entity not found or unauthorized"));
+                .orElseThrow(() -> new HandleException("Entity not found or unauthorized"));
     }
-    
-    @Transactional
+
+    @Transactional(readOnly = true)
     public T save(T entity) {
         entity.setUserId(getCurrentUserId());
         return repository.save(entity);
     }
-    
+
     @Transactional
     public void delete(Long id) {
         T entity = findByIdOrThrow(id);
         repository.delete(entity);
     }
-    
+
     @Transactional
     public T update(Long id, T updatedEntity) {
         T existingEntity = findByIdOrThrow(id);

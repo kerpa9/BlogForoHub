@@ -28,6 +28,8 @@ public class Course implements IUserOwnedEntity {
     private Long id;
     @JsonIgnore
     private Long id_login;
+
+    private Long user_sequential_id;
     private String name;
     private String category;
     private Boolean active;

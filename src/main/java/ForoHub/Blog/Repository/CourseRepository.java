@@ -13,20 +13,35 @@ import ForoHub.Blog.Repository.BaseRepository.BaseRepository;
 
 public interface CourseRepository extends BaseRepository<Course> {
 
-    Optional<Course> findByIdAndUserId(Long id, Long id_login);
+        @Override
+        Optional<Course> findByIdAndIdLogin(Long id, Long id_login);
 
-    List<Course> findAllByUserId(Long id_login);
+        @Override
+        List<Course> findAllByIdLogin(Long id_login);
 
-    @Query("SELECT c.name FROM Course c WHERE c.id = :id")
-    String findNameCourse(@Param("id") Long id);
+        @Query("SELECT c.name FROM Course c WHERE c.id = :id")
+        String findNameCourse(@Param("id") Long id);
 
-    @Query("""
-            select c from Course c
-            where
-            c.active=TRUE
-            and
-            c.id_login= :id
+        @Query("SELECT COALESCE(MAX(c.user_sequential_id), 0) FROM Course c WHERE c.id_login = :id_login")
+        Long findMaxSequentialIdForUser(@Param("id_login") Long id_login);
+
+        @Query("""
+                        select c from Course c
+                        where
+                        c.active = TRUE
+                        and
+                        c.id_login = :id_login
+                        order by c.user_sequential_id
                         """)
-    Page<Course> findAllActive(Long id, Pageable pageable);
+        Page<Course> findAllActive(@Param("id_login") Long id_login, Pageable pageable);
 
+        @Query("""
+                        select c from Course c
+                        where
+                        c.id_login = :id_login
+                        and c.user_sequential_id = :user_sequential_id
+                        """)
+        Optional<Course> findBySequentialIdAndId_login(
+                        @Param("user_sequential_id") Long user_sequential_id,
+                        @Param("id_login") Long id_login);
 }

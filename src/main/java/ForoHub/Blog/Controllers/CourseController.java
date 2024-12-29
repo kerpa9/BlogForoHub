@@ -42,7 +42,7 @@ public class CourseController {
         Page<Course> courses = courseService.getAllCourse(pageable);
 
         Page<CourseDTO> courseDTO = courses
-                .map((var course) -> new CourseDTO(course.getName(), course.getCategory(), null));
+                .map((var course) -> new CourseDTO(null, course.getName(), course.getCategory(), null));
 
         return ResponseEntity.ok(PageableDTO.fromPage(courseDTO));
 

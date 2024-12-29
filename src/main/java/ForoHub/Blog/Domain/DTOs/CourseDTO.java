@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 public record CourseDTO(
 
                 // Long id,
+                Long user_sequential_id,
                 @NotBlank String name,
                 @NotBlank String category,
                 Boolean active

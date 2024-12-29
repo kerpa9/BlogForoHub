@@ -14,16 +14,16 @@ import ForoHub.Blog.Config.RegisterFilterID.IUserOwnedEntity;
 
 @NoRepositoryBean
 public interface BaseRepository<T extends IUserOwnedEntity> extends JpaRepository<T, Long> {
-    
+
     @Query("SELECT e FROM #{#entityName} e WHERE e.id_login = :id_login")
-    List<T> findAllByUserId(@Param("id_login") Long id_login);
-    
+    List<T> findAllByIdLogin(@Param("id_login") Long id_login);
+
     @Query("SELECT e FROM #{#entityName} e WHERE e.id_login = :id_login")
-    Page<T> findAllByUserIdPaginated(@Param("id_login") Long id_login, Pageable pageable);
-    
+    Page<T> findAllByIdLoginPaginated(@Param("id_login") Long id_login, Pageable pageable);
+
     @Query("SELECT e FROM #{#entityName} e WHERE e.id = :id AND e.id_login = :id_login")
-    Optional<T> findByIdAndUserId(@Param("id") Long id, @Param("id_login") Long id_login);
-    
+    Optional<T> findByIdAndIdLogin(@Param("id") Long id, @Param("id_login") Long id_login);
+
     @Query("SELECT COUNT(e) > 0 FROM #{#entityName} e WHERE e.id = :id AND e.id_login = :id_login")
-    boolean existsByIdAndUserId(@Param("id") Long id, @Param("id_login") Long id_login);
+    boolean existsByIdAndIdLogin(@Param("id") Long id, @Param("id_login") Long id_login);
 }
