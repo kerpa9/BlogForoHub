@@ -25,6 +25,9 @@ public class ResponseService {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    private FilterLoginService filter;
+
     @Transactional
     public Response createResponse(@Valid ResponseDTO responseDTO) {
 
@@ -33,6 +36,12 @@ public class ResponseService {
         var topic = topicRepository.findById(responseDTO.idTopic()).get();
         var users = usersRepository.findById(responseDTO.idUsers()).get();
 
+        Long userId = filter.getUserLogin();
+
+        Long sequentialResponse = response.generatedInsertSequential(userId) + 1;
+
+        responseData.setId_login(userId);
+        responseData.setId_response(sequentialResponse);
         responseData.setTopic(topic);
         responseData.setUsers(users);
         responseData.setMessage(responseDTO.message());

@@ -41,7 +41,8 @@ public interface TopicRepository extends BaseRepository<Topic> {
     Topic findByIdActive(@Param("id") Long id);
 
     @Query("""
-            select t from Topic t where t.id_login = :id_login and t.id_topic = :id_topic""")
+            select t from Topic t where  t.active=TRUE
+            and t.id_login = :id_login and t.id_topic = :id_topic""")
     Topic findByIdUserLogin(
             @Param("id_topic") Long id_topic,
             @Param("id_login") Long id_login);

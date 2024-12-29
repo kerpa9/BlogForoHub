@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record ResponseDTO(
 
+                Long id_response,
                 Long idTopic,
                 Long idUsers,
                 @NotBlank String message,

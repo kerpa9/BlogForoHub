@@ -3,7 +3,9 @@ package ForoHub.Blog.Domain.Models;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ForoHub.Blog.Config.RegisterFilterID.IUserOwnedEntity;
 import ForoHub.Blog.Domain.Models.users.Users;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,11 +28,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Response {
+public class Response implements IUserOwnedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
+    private Long id_login;
+    private Long id_response;
 
     private String message;
     private LocalDateTime create_date;
@@ -54,8 +59,14 @@ public class Response {
         this.active = false;
     }
 
- 
+    @Override
+    public Long getUserId() {
+        return id_login;
+    }
 
-    
+    @Override
+    public void setUserId(Long userId) {
+        this.id_login = userId;
+    }
 
 }

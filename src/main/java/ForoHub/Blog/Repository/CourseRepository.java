@@ -24,7 +24,6 @@ public interface CourseRepository extends BaseRepository<Course> {
 
         @Query("SELECT COALESCE(MAX(c.id_course), 0) FROM Course c WHERE c.id_login = :id_login")
         Long findMaxSequentialIdForUser(@Param("id_login") Long id_login);
-        
 
         @Query("""
                         select c from Course c
@@ -38,7 +37,7 @@ public interface CourseRepository extends BaseRepository<Course> {
 
         @Query("""
                         select c from Course c
-                        where
+                        where c.active = TRUE and
                         c.id_login = :id_login
                         and c.id_course = :id_course
                         """)

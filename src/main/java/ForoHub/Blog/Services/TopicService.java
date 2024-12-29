@@ -50,7 +50,7 @@ public class TopicService {
                         topic.setResponses(
                                         topicDTO.response().stream()
                                                         .map(r -> new Response(
-                                                                        null, r.message(),
+                                                                        null, null, null, r.message(),
                                                                         r.create_date(),
                                                                         topic, null, r.active(), r.solution()))
                                                         .peek(r -> r.setTopic(topic))
