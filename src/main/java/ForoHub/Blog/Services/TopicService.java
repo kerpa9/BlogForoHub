@@ -70,14 +70,7 @@ public class TopicService {
 
         @Transactional
         public Topic getOneTopicByID(Long id) {
-
-                // System.out.println("******************************");
-                // System.out.println(topicRepository.findByIdUserLogin(id,
-                // filter.getUserLogin()));
-                // System.out.println("******************************");
-
                 return topicRepository.findByIdUserLogin(id, filter.getUserLogin());
-
         }
 
         @Transactional

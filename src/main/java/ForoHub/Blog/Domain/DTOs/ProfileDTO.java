@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record ProfileDTO(
 
+                Long id_profile,
                 Long idUser,
                 @NotBlank String name_profile,
                 Boolean active

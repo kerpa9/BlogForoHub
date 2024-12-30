@@ -1,5 +1,8 @@
 package ForoHub.Blog.Domain.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ForoHub.Blog.Config.RegisterFilterID.IUserOwnedEntity;
 import ForoHub.Blog.Domain.Models.users.Users;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,11 +26,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 
-public class Profile {
+public class Profile implements IUserOwnedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
+    private Long id_login;
+    @JsonIgnore
+    private Long id_profile;
     private String name_profile;
     private Boolean active;
 
@@ -37,6 +44,16 @@ public class Profile {
 
     public void setStausInactiveProfile() {
         this.active = false;
+    }
+
+    @Override
+    public Long getUserId() {
+        return id_login;
+    }
+
+    @Override
+    public void setUserId(Long userId) {
+        this.id_login = userId;
     }
 
 }

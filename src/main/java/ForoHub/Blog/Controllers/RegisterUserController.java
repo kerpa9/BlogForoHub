@@ -27,32 +27,16 @@ public class RegisterUserController {
     @Autowired
     private TokenService tokenService;
 
-   
-
     @SuppressWarnings("rawtypes")
     @PostMapping
     public ResponseEntity registerUsers(@RequestBody @Valid RegisterUsersDTO registerUsersDTO) {
-        // RegisterUser creatUsers = registerService.inserDatabase(registerUsersDTO);
-        // return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
-
-
 
         Authentication token = new UsernamePasswordAuthenticationToken(registerUsersDTO.email(),
                 registerUsersDTO.password());
-
-        System.out.println("************************");
-        System.out.println(token);
-        System.out.println("************************");
-        
-        var userAuth = authenticationManager.authenticate(token);
-        
-        var jwtToken = tokenService.generatedToken((RegisterUser) userAuth.getPrincipal());
-        System.out.println("************************");
-        System.out.println(jwtToken);
-        System.out.println("************************");
+                var userAuth = authenticationManager.authenticate(token);
+                var jwtToken = tokenService.generatedToken((RegisterUser) userAuth.getPrincipal());
 
         return ResponseEntity.ok(new DatosJWTTokenDTO(jwtToken));
-        // return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
 
     }
 

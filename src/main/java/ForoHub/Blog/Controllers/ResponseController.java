@@ -42,7 +42,7 @@ public class ResponseController {
         Page<Response> responses = responseService.getAllResponse(pageable);
         Page<ResponseDTO> responseDTOs = responses.map(response -> new ResponseDTO(
 
-                response.getId_login(),
+                response.getId_login(), 
                 response.getTopic().getId(),
                 response.getUsers().getId(),
                 response.getMessage(),

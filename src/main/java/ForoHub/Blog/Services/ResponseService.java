@@ -56,17 +56,19 @@ public class ResponseService {
     @Transactional
     public Page<Response> getAllResponse(Pageable pageable) {
 
-        return response.findAllActive(pageable);
+        Long loggedUserId = filter.getUserLogin();
+
+        return response.findAllActive(loggedUserId, pageable);
     }
 
     @Transactional
     public Response getOneByID(Long id) {
-        return response.findByIdActive(id);
+        return response.findByIdUserLogin(id, filter.getUserLogin());
     }
 
     @Transactional
     public void deleteResponse(Long id) {
-        Response responseModel = response.findByIdActive(id);
+        Response responseModel = response.findByIdUserLogin(id, filter.getUserLogin());
         responseModel.setStausInactiveResponse();
     }
 

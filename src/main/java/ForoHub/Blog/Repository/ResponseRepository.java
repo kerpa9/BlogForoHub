@@ -22,10 +22,11 @@ public interface ResponseRepository extends BaseRepository<Response> {
     @Query("SELECT COALESCE(MAX(r.id_response), 0) FROM Response r WHERE r.id_login = :id_login")
     Long generatedInsertSequential(@Param("id_login") Long id_login);
 
-    @Query("""
-                select r from Response r where r.active = true
+  @Query("""
+                select p from Response p where p.active = true and p.id_login=:id
             """)
-    Page<Response> findAllActive(Pageable pageable);
+    Page<Response> findAllActive(Long id, Pageable pageable);
+    
 
     @Query("""
             select r from Response r
