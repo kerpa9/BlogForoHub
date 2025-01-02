@@ -16,38 +16,28 @@ import ForoHub.Blog.Domain.DTOs.PageableDTO;
 import ForoHub.Blog.Domain.DTOs.UsersDTO;
 import ForoHub.Blog.Domain.Models.RegisterUser;
 import ForoHub.Blog.Domain.Models.users.Users;
-import ForoHub.Blog.Repository.UsersRepository;
 import ForoHub.Blog.Services.UsersService;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/register")
 
+
 public class UserController {
     @Autowired
     private UsersService usersService;
 
-    @Autowired
-    private UsersRepository repository;
+
 
     @PostMapping
     public ResponseEntity<Users> createUser(@RequestBody @Valid UsersDTO usersDTO) {
         try {
-            if (usersDTO.document() == null || usersDTO.name_profile() == null ||
-                    usersDTO.phone() == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(null);
-            }
+
             Users creatUsers = usersService.createInsertUser(usersDTO);
 
-            // if (repository.existsByEmail(usersDTO.email())) {
-                // } else {
-                    
-                //     return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                //             .body(null);
-                // }
-                    registerUser(usersDTO);
-                    return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
+            registerUser(usersDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(creatUsers);
+
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(null);
@@ -60,7 +50,8 @@ public class UserController {
         Page<Users> users = usersService.getAllUsers(pageable);
 
         Page<UsersDTO> usersDTOs = users
-                .map(user -> new UsersDTO(user.getEmail(), user.getDocument(), user.getName_profile(), user.getPhone(), null, null, null));
+                .map(user -> new UsersDTO(user.getEmail(), user.getDocument(), user.getName_profile(), user.getPhone(),
+                        null, null, null));
         return ResponseEntity.ok(PageableDTO.fromPage(usersDTOs));
 
     }

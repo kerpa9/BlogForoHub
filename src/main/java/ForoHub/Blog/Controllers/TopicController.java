@@ -33,30 +33,41 @@ public class TopicController {
     @PostMapping
     public ResponseEntity<Topic> createTopic(@RequestBody @Valid TopicDTO topicDTO) {
 
-        Topic createTopic = topicService.createTopic(topicDTO);
+        try {
+            
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(createTopic);
+            Topic createTopic = topicService.createTopic(topicDTO);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(createTopic);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(null);
+        }
 
     }
 
     @GetMapping
     private ResponseEntity<PageableDTO> listTopics(@PageableDefault(size = 5) Pageable pageable) {
 
-        Page<Topic> topics = topicService.getAllTopics(pageable);
+            Page<Topic> topics = topicService.getAllTopics(pageable);
 
-        Page<TopicDTO> topicDTO = topics.map((var topic) -> new TopicDTO(
+            Page<TopicDTO> topicDTO = topics.map((var topic) -> new TopicDTO(
 
-                topic.getId(),
-                topic.getId_topic(),
-                topic.getTitle(),
-                topic.getMessage(),
-                topic.getCreate_date(),
-                topic.getActive(),
-                null,
-                topic.getName_course(),
-                topic.getCourse().getId()));
+                    topic.getId(),
+                    topic.getId_topic(),
+                    topic.getTitle(),
+                    topic.getMessage(),
+                    topic.getCreate_date(),
+                    topic.getActive(),
+                    null,
+                    topic.getName_course(),
+                    topic.getCourse().getId()));
 
-        return ResponseEntity.ok(PageableDTO.fromPage(topicDTO));
+            return ResponseEntity.ok(PageableDTO.fromPage(topicDTO));
+
+      
+
     }
 
     @GetMapping("/{id}")

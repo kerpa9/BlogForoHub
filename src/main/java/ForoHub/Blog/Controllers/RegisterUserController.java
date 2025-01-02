@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,7 @@ public class RegisterUserController {
 
             return ResponseEntity.ok(new DatosJWTTokenDTO(jwtToken));
             
-        } catch (Exception e) {
+        } catch (AuthenticationException e) {
             
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
             .body("User not found in the database, please verify the registration");
