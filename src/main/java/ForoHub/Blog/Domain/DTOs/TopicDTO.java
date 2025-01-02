@@ -10,8 +10,10 @@ public record TopicDTO(
 
         Long id,
         Long id_topic,
-        @NotBlank String title, @NotBlank String message, @NotNull LocalDateTime create_date,
-        Boolean active,
+        @NotBlank String title, 
+        @NotBlank String message, 
+        @NotNull LocalDateTime create_date,
+        @NotBlank Boolean active,
         List<ResponseDTO> response,
         String name_course,
         Long idCourse

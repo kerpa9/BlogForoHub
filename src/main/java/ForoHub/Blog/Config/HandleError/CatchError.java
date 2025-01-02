@@ -1,35 +1,39 @@
 package ForoHub.Blog.Config.HandleError;
 
+import java.util.stream.Collectors;
+
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import ForoHub.Blog.Config.HandleException.HandleException;
-import ForoHub.Blog.Domain.DTOs.ManageErrorDTO;
 import jakarta.persistence.EntityNotFoundException;
 
 @RestControllerAdvice
 public class CatchError {
 
-    @SuppressWarnings("rawtypes")
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity notFound() {
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<?> notFound(NotFoundException e) {
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e);
     }
 
-    @SuppressWarnings("rawtypes")
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity batRequest400(MethodArgumentNotValidException e) {
-        var errors = e.getFieldErrors().stream().map(ManageErrorDTO::new).toList();
+    public ResponseEntity<?> batRequest400(MethodArgumentNotValidException e) {
+        var errors = e.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(error -> "Verify the added data and identify the error")
+                .collect(Collectors.toList());
 
-        return ResponseEntity.badRequest().body(errors);
-
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
-    @SuppressWarnings("rawtypes")
     @ExceptionHandler(HandleException.class)
-    public ResponseEntity manageErrorValidate(HandleException e) {
+    public ResponseEntity<?> manageErrorValidate(HandleException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 

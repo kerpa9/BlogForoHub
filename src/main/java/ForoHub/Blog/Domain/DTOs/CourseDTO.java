@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record CourseDTO(
 
-                // Long id,
+      
                 Long id_course,
                 @NotBlank String name,
                 @NotBlank String category,

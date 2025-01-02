@@ -8,6 +8,8 @@ import ForoHub.Blog.Domain.Models.users.Users;
 
 
 public interface UsersRepository extends JpaRepository<Users, Long> {
+
+    
     
     UserDetails findByEmail(String email);
     boolean existsByEmail(String email);
