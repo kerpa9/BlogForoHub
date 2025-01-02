@@ -1,6 +1,8 @@
 package ForoHub.Blog.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ForoHub.Blog.Domain.DTOs.UsersDTO;
@@ -34,6 +36,7 @@ public class UsersService {
 
     }
 
+    @Transactional
     public RegisterUser registerUser(@Valid UsersDTO registerUser) {
 
         RegisterUser register = new RegisterUser();
@@ -41,6 +44,11 @@ public class UsersService {
         register.setPassword(registerUser.password());
         return registerRepository.save(register);
 
+    }
+
+    @Transactional
+    public Page<Users> getAllUsers(Pageable pageable) {
+        return usersRepository.listUsers(pageable);
     }
 
 }

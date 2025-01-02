@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ForoHub.Blog.Config.HandleException.HandleException;
 import ForoHub.Blog.Domain.DTOs.DatosJWTTokenDTO;
 import ForoHub.Blog.Domain.DTOs.RegisterUsersDTO;
 import ForoHub.Blog.Domain.Models.RegisterUser;
-import ForoHub.Blog.Repository.UsersRepository;
 import ForoHub.Blog.Services.TokenService;
 import jakarta.validation.Valid;
 
@@ -30,27 +28,22 @@ public class RegisterUserController {
     @Autowired
     private TokenService tokenService;
 
-    @Autowired
-    private UsersRepository usersRepository;
-
     @SuppressWarnings("rawtypes")
     @PostMapping
     public ResponseEntity registerUsers(@RequestBody @Valid RegisterUsersDTO registerUsersDTO) {
 
         try {
-            if (!usersRepository.existsByEmail(registerUsersDTO.email())) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found. Cannot register the user");
-            }
-
             Authentication token = new UsernamePasswordAuthenticationToken(registerUsersDTO.email(),
                     registerUsersDTO.password());
             var userAuth = authenticationManager.authenticate(token);
             var jwtToken = tokenService.generatedToken((RegisterUser) userAuth.getPrincipal());
 
             return ResponseEntity.ok(new DatosJWTTokenDTO(jwtToken));
-
+            
         } catch (Exception e) {
-            throw new HandleException("Error insert register data");
+            
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body("User not found in the database, please verify the registration");
         }
 
     }
